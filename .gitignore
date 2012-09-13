@@ -1,0 +1,9 @@
+*.*~
+*~
+*.swp
+*.nja
+*.pyc
+*.s3db
+env/*
+
+local_settings.py
