@@ -1,18 +1,13 @@
 # Django imports
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-# Tastypie
-from tastypie.api import Api
-# Our resources
-from pyday_rest.api.resources import UserResource
+from pyday_rest.api import urls as api_urls
+from pyday_rest.api.urls import v1_api
 
-
-v1_api = Api()
-v1_api.register(UserResource())
 
 urlpatterns = patterns('',
     # URL Hook:
-    url(r'^api/', include(v1_api.urls)),
+    url(r'^api/', include(v1_api.urls, namespace='api')),
 )
 
 # Admin shit
