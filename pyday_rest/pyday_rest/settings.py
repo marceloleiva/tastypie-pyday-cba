@@ -119,6 +119,9 @@ INSTALLED_APPS = (
 
     # Tastypie
     'tastypie',
+
+    # Custom
+    'twitter',
 )
 
 # A sample logging configuration. The only tangible logging
