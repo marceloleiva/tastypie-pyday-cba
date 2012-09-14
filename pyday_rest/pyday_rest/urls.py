@@ -7,7 +7,7 @@ from pyday_rest.api.urls import v1_api
 
 urlpatterns = patterns('',
     # URL Hook:
-    url(r'^api/', include(v1_api.urls, namespace='api')),
+    url(r'^api/', include(v1_api.urls)),
 )
 
 # Admin shit
