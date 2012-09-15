@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.utils.html import urlize
 
 from tastypie import fields
 from tastypie.resources import ModelResource, ALL
@@ -26,3 +27,7 @@ class TweetResource(ModelResource):
         queryset = Tweet.objects.all()
         resource_name = 'tweet'
         authorization = Authorization()
+
+    def dehydrate_tweet(self, bundle):
+        return urlize(bundle.data['tweet'])
+
