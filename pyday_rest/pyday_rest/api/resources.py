@@ -8,7 +8,7 @@ from tastypie.resources import ModelResource, ALL
 from tastypie.authorization import Authorization
 
 from twitter.models import Tweet
-
+from pyday_rest.api.validation import TwitterValidation
 
 class UserResource(ModelResource):
     class Meta:
@@ -29,6 +29,7 @@ class TweetResource(ModelResource):
         queryset = Tweet.objects.all()
         resource_name = 'tweet'
         authorization = Authorization()
+        validation = TwitterValidation()
 
     def dehydrate_tweet(self, bundle):
         return urlize(bundle.data['tweet'])
@@ -39,7 +40,9 @@ class TweetResource(ModelResource):
         bundle.data['hash'] = m.hexdigest()
         return bundle
 
+    """
     def hydrate(self, bundle):
         tweet = bundle.data['tweet']
         bundle.data['tweet'] = " ".join([t for t in tweet.split(" ") if t])
         return bundle
+    """
