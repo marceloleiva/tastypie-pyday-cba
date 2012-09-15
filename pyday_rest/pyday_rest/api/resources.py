@@ -1,3 +1,5 @@
+import hashlib
+
 from django.contrib.auth.models import User
 from django.utils.html import urlize
 
@@ -31,3 +33,8 @@ class TweetResource(ModelResource):
     def dehydrate_tweet(self, bundle):
         return urlize(bundle.data['tweet'])
 
+    def dehydrate(self, bundle):
+        m = hashlib.md5()
+        m.update(bundle.data['tweet'])
+        bundle.data['hash'] = m.hexdigest()
+        return bundle
