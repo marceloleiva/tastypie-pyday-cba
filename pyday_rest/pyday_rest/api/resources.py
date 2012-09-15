@@ -38,3 +38,8 @@ class TweetResource(ModelResource):
         m.update(bundle.data['tweet'])
         bundle.data['hash'] = m.hexdigest()
         return bundle
+
+    def hydrate(self, bundle):
+        tweet = bundle.data['tweet']
+        bundle.data['tweet'] = " ".join([t for t in tweet.split(" ") if t])
+        return bundle
